@@ -1,0 +1,193 @@
+
+Lab 14: Lambda Expressions and Stream API
+14.1)package hemanth;
+import java.util.Scanner;
+import java.util.function.BiFunction;
+
+public class PowerValue {
+
+	public static  void main(String args[])
+	{
+		PowerFunc pf= (x,y)-> Math.pow(x,y);
+		Scanner sc=new Scanner(System.in);
+		double x,y;
+		System.out.println("Enter x value");
+		x=sc.nextDouble();
+		System.out.println("Enter y value");
+		y=sc.nextDouble();
+		double res=pf.powerVal(x,y);
+		System.out.println("Power using lambda expression is "+res);
+		BiFunction<Double,Double,Double> bi=(a,b) ->Math.pow(x,y);
+		System.out.println("Using Bi function:"+bi.apply(x,y));
+	}
+}
+package hemanth;
+
+public interface PowerFunc {
+
+	double powerVal(double x, double y);
+
+	
+}
+output: -
+Enter x value
+8
+Enter y value
+2
+Power using lambda expression is 64.0
+Using Bi function:64.0
+
+14.2)
+package hemanth;
+
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class InsertSpace {
+
+	private static void formatString(String str) {
+		Function<String,String> f= (s)->
+		{StringBuilder result = new StringBuilder();
+		for (int i = 0; i < str.length(); i++) {
+		   if (i > 0) {
+		      result.append(" ");
+		    }
+
+		   result.append(str.charAt(i));
+		}
+
+		return result.toString();
+		};
+		String res=f.apply(str);
+		System.out.println(res);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the String");
+		String str=sc.next();
+		formatString(str);
+		sc.close();
+	}
+}
+
+
+output: -Enter the String
+hemanth
+h e m a n t h
+
+14.3)package hemanth;
+import java.util.Scanner;
+import java.util.function.BiPredicate;
+
+
+public class LambdaUserName {
+
+		public static void check(String user,String pwd)
+		{
+			BiPredicate<String,String> bp= (u,p)->{
+				if(user.equals("hemanth") && pwd.equals("123"))
+					return true;
+				else
+				return false;
+					};
+					System.out.println(bp.test(user, pwd));
+		}
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			Scanner sc=new Scanner(System.in);
+			System.out.println("Enter user name");
+			String uname=sc.next();
+			System.out.println("Enter password");
+			String pwd=sc.next();
+			check(uname,pwd);
+		}
+
+	}
+
+OUT Put: -
+Enter user name
+
+hemanth
+Enter password
+123
+true
+
+14.4)
+package hemanth;
+interface MethodReferenceInterface
+{
+	MethodReferenceEx display(String a,String b);
+}
+class MethodReferenceEx
+{
+	String f,l;
+
+	public MethodReferenceEx(String f, String l) {
+		//super();
+		this.f = f;
+		this.l = l;
+		System.out.println(f+" "+l);
+	}
+
+	public String getF() {
+		return f;
+	}
+
+	public void setF(String f) {
+		this.f = f;
+	}
+
+	public String getL() {
+		return l;
+	}
+
+	public void setL(String l) {
+		this.l = l;
+	}
+	
+}
+public class DemonstateInstance {	
+	public static void main(String args[])
+	{
+		MethodReferenceInterface mri= MethodReferenceEx::new;
+		mri.display("hemanth", "reddy");
+	}
+}
+Out put: -
+hemanth reddy
+
+14.5)package hemanth;
+import java.util.Scanner;
+import java.util.function.Function;
+
+public class Factorial {
+
+		public static int factorial(int n)
+		{
+			int res=1;
+			for(int i=1;i<=n;i++)
+			{
+				 res=res*i;
+			}
+			return res;
+		}
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			Scanner sc=new Scanner(System.in);
+			System.out.println("Enter num for factorial");
+			int n=sc.nextInt();
+			Function<Integer,Integer> fact=Factorial::factorial;
+			System.out.println("factorial = "+fact.apply(n));
+			
+			sc.close();
+		}
+
+	}
+
+OUTPUT: -
+Enter num for factorial
+4
+factorial = 24
+

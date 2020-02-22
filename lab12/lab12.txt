@@ -1,0 +1,106 @@
+Lab 12.log4j
+12.1)package hemanth;
+
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+public class Log4j {
+
+  //create a logger for Log4j class
+	static Logger logger=LogManager.getLogger(Log4jDemo.class.getName());
+
+public static void main(String args[]) {
+
+  // create log messages for each priority level
+	logger.error("logged");
+	logger.debug("not logger");
+	logger.info("log info");
+	logger.warn("warning");
+	logger.fatal("system fatal");
+	
+      }
+}
+
+12.2)
+package hemanth;
+
+import labbean.Message;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+   public class Log4j3 
+   {
+
+    //create a logger for Log4j3 class
+	static Logger logger=LogManager.getLogger(Log4j3.class.getName());
+
+     public static void main(String args[]) 
+     {
+    	 
+
+             //create an instance of Message class
+	         @SuppressWarnings("unused")
+			Logger log=Logger.getLogger("Message");
+	         Message m=new Message();
+             //call setMessage() method
+	         m.setMessage("msg");
+	         
+             //print the log messages using getMessage() method
+	         m.getMessage();
+	
+             // write log message statements for each priority level
+	         logger.error("logged");
+	         logger.debug("not logger");
+	         logger.info("log info");
+	         logger.warn("warning");
+	         logger.fatal("system fatal");
+      }
+}
+
+12.3)
+
+package hemanth;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import labbean.Message;
+
+public class Log4j2
+{
+	static Logger log=LogManager.getLogger(Message.class.getName());
+   //create a logger for Log4j2 class
+
+    public static void main(String args[])
+    {
+
+        for(int i=1 ; i<50000; i++)
+        {
+           System.out.println("Counter = " + i);
+           log.debug("This is my debug message. Counter = " + i);
+           log.error("error message");
+       	   log.info("info message");
+       	   log.warn("warning message");
+       	   log.fatal("fatal message");
+       	   
+           // write log message statements for remaining priority levels 
+		  //in the same way
+            }
+      }
+}
+12.4)package hemanth;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+public class HelloWorld { 
+static final Logger logger = Logger.getLogger(HelloWorld.class);  
+public static void main(String[] args) {         
+PropertyConfigurator.configure("log4j.properties");
+logger.debug("Hello World!");  
+logger.warn("Sample warn message");    
+logger.error("Sample error message");   
+} 
+}
